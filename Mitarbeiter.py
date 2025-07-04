@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 
+
 @st.cache_data
 def lade_Mitarbeiter():
     df = pd.read_csv("Faker/Mitarbeiter.csv")
@@ -49,6 +50,7 @@ if st.session_state.modus == "liste" and st.session_state.ausgewahlt_mitarbeiter
 # Mitarbeiterliste anzeigen
 if st.session_state.modus == "liste" and st.session_state.ausgewahlt_mitarbeiter is None:
     gefiltert = st.session_state.df_Mitarbeiter
+    gefiltert = gefiltert.sort_values(by="Mitarbeiter-ID")
     if suche:
         suchbegriff = suche.strip().lower()
         gefiltert = gefiltert[

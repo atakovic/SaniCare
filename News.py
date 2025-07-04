@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 
 
-
 # Daten laden ohne Cache, damit immer aktuell
 def lade_News():
     df = pd.read_csv("Faker/News.csv")

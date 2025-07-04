@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import datetime
@@ -8,24 +7,29 @@ from streamlit_autorefresh import st_autorefresh
 
 # Daten laden ohne Cache, damit immer aktuell
 def lade_patienten():
-    df = pd.read_csv("Patienten.csv")
+    df = pd.read_csv("Faker/Patienten.csv")
     df.columns = df.columns.str.strip()
     return df
 
 
 def lade_werte():
-    df = pd.read_csv("Werte.csv")
+    df = pd.read_csv("Faker/Werte.csv")
     df.columns = df.columns.str.strip()
     return df
 
 
 def lade_heime():
-    df = pd.read_csv("Heime.csv")
+    df = pd.read_csv("Faker/Heime.csv")
+    df.columns = df.columns.str.strip()
+    return df
+
+def lade_mitarbeiter():
+    df = pd.read_csv("Faker/Mitarbeiter.csv")
     df.columns = df.columns.str.strip()
     return df
 
 def letzter_alarm_aktiv():
-    df = pd.read_csv("Werte.csv")
+    df = pd.read_csv("Faker/Werte.csv")
 
     letzte_werte = df.iloc[-1]
 
@@ -76,6 +80,33 @@ if "df_heim" not in st.session_state:
 def reload_data():
     st.session_state.df_patienten = lade_patienten()
     st.session_state.df_werte = lade_werte()
+
+# Funktion zur Anzeige der MA innerhalb des Formulars - nur Anzeige der noch verfügbaren MA und auch nur die, die zu stationär passen oder zu ambulant
+def verfügbare_mitarbeiter(pflegeart, df_mitarbeiter, df_patienten):
+    if pflegeart not in ["stationär", "ambulant"]:
+        return []
+
+    # 1. Mitarbeiter nach Abteilung (bei stationär)
+    if pflegeart == "stationär":
+        df_mitarbeiter = df_mitarbeiter[
+            df_mitarbeiter["Abteilung"].isin(["Pflege", "Medizinischer Dienst"])
+        ]
+    elif pflegeart == "ambulant":
+        df_mitarbeiter = df_mitarbeiter[
+            ~df_mitarbeiter["Abteilung"].isin(["Pflege", "Medizinischer Dienst"])
+        ]
+
+    # 2. Mitarbeiter, die bereits Mischpflege machen → ausschließen
+    arten = df_patienten.groupby("Mitarbeiter-ID")["Pflegeart"].nunique()
+    nur_eine_Art = arten[arten <= 1].index
+    df_mitarbeiter = df_mitarbeiter[df_mitarbeiter["Mitarbeiter-ID"].isin(nur_eine_Art)]
+
+    # 3. Mitarbeiter mit < 24 Patienten
+    belegung = df_patienten.groupby("Mitarbeiter-ID")["Patienten-ID"].count()
+    freie_ids = belegung[belegung < 24].index
+    df_mitarbeiter = df_mitarbeiter[df_mitarbeiter["Mitarbeiter-ID"].isin(freie_ids)]
+
+    return df_mitarbeiter["Mitarbeiter-ID"].unique()
 
 
 # Session State für UI-Steuerung
@@ -272,8 +303,8 @@ elif st.session_state.ausgewählter_patient is not None and st.session_state.mod
     st.write(f"**Krankheiten**: {patient['Krankheiten']}")
     st.write(f"**Medikamente**: {patient['Medikamente']}")
     st.write(f"**Tagesdosis**: {patient['Tagesdosis']}")
-    st.write(f"**Zuständiger Pfleger**: {patient['aktueller-Pfleger']}")
-    st.write(f"**Zuständiger Pfleger-ID**: {patient['aktueller-Pfleger-ID']}")
+    st.write(f"**Mitarbeiter-ID**: {patient['Mitarbeiter-ID']}")
+    st.write(f"**Mitarbeiter**: {patient['Mitarbeiter']}")
     st.write(f"**Pflegeart**: {patient['Pflegeart']}")
     st.write(f"**Tagebuch-ID**: {patient['Tagebuch-ID']}")
     st.write(f"**Heim-ID**: {patient['Heim-ID']}")
@@ -287,7 +318,7 @@ elif st.session_state.ausgewählter_patient is not None and st.session_state.mod
     if st.button("Patient löschen"):
         st.session_state.df_patienten = st.session_state.df_patienten[
             st.session_state.df_patienten['Patienten-ID'] != st.session_state.ausgewählter_patient]
-        st.session_state.df_patienten.to_csv("Patienten.csv", index=False)
+        st.session_state.df_patienten.to_csv("Faker/Patienten.csv", index=False)
         reload_data()
         st.session_state.ausgewählter_patient = None
         st.session_state.modus = "liste"
@@ -295,8 +326,11 @@ elif st.session_state.ausgewählter_patient is not None and st.session_state.mod
 
 
 #########################################################################
-   #Neu
-# Freie Plätze in den Heimen anzeigen
+########################################################################
+elif st.session_state.modus == "hinzufügen":
+    #########################################################################
+    # Neu
+    # Freie Plätze in den Heimen anzeigen
     st.subheader("Freie Plätze in den Heimen")
     df_heim = st.session_state.df_heim
     df_patienten = st.session_state.df_patienten
@@ -304,8 +338,8 @@ elif st.session_state.ausgewählter_patient is not None and st.session_state.mod
     heime_status = []
     for _, heim in df_heim.iterrows():
         heim_id = heim["Heim-ID"]
-        max_plaetze = heim.get("Anzahl_Zimmer", 0)
-        belegte_plaetze = df_patienten[df_patienten['Heim-ID'] == heim_id]['Zimmernummer'].nunique()
+        max_plaetze = heim.get("Plätze", 0)
+        belegte_plaetze = df_patienten[df_patienten['Heim-ID'] == heim_id]['Patienten-ID'].count()
         freie_plaetze = int(max_plaetze) - belegte_plaetze if pd.notnull(max_plaetze) else None
         status = "voll" if freie_plaetze is not None and freie_plaetze <= 0 else "frei"
         heime_status.append({
@@ -316,33 +350,91 @@ elif st.session_state.ausgewählter_patient is not None and st.session_state.mod
             "Status": status
         })
 
-    st.dataframe(pd.DataFrame(heime_status))
-########################################################################
-
-# Neuen Patienten hinzufügen
-elif st.session_state.modus == "hinzufügen":
-    st.markdown("### Neuen Patienten hinzufügen")
-##########################################################################
-    # --- NEU: Übersicht der Heime mit freier Kapazität ---
-    st.subheader("Übersicht Heime und freie Plätze")
-
-    df_heim = st.session_state.df_heim
+    st.dataframe(pd.DataFrame(heime_status), use_container_width=True)
+    ########################################################################
+    # Neuen Patienten hinzufügen
+    # --- Vorab: CSV-Dateien vorbereiten ---
     df_patienten = st.session_state.df_patienten
+    df_mitarbeiter = pd.read_csv("Faker/Mitarbeiter.csv")
+    df_heime = pd.read_csv("Faker/Heime.csv")
 
-    # Berechne belegte Zimmer pro Heim
-    belegte_plaetze = df_patienten.groupby("Heim-ID")["Patienten-ID"].count()
+    # --- Algo1: Freie MA-Kapazität prüfen ---
+    def genug_mitarbeiter_verfügbar(df_pat):
+        belegung = df_pat.groupby("Mitarbeiter-ID")["Patienten-ID"].count()
+        return (belegung < 24).any()
 
-    # Tabelle mit Heim-ID, Gesamtplätze, belegte und freie Plätze erstellen
-    heim_uebersicht = df_heim[["Heim-ID", "Anzahl_Zimmer"]].copy()
-    heim_uebersicht["Belegte Plätze"] = heim_uebersicht["Heim-ID"].map(belegte_plaetze).fillna(0).astype(int)
-    heim_uebersicht["Freie Plätze"] = heim_uebersicht["Anzahl_Zimmer"] - heim_uebersicht["Belegte Plätze"]
-    heim_uebersicht["Status"] = heim_uebersicht["Freie Plätze"].apply(
-        lambda x: "Voll" if x <= 0 else "Freie Plätze vorhanden")
+    # --- Algo2: Keine Mischpflege ---
+    def spezialisiert_mitarbeiter(mitarbeiter_id, neue_pflegeart, df_patienten):
+        patienten_des_ma = df_patienten[df_patienten["Mitarbeiter-ID"] == mitarbeiter_id]
 
-    st.dataframe(heim_uebersicht[["Heim-ID", "Anzahl_Zimmer", "Belegte Plätze", "Freie Plätze", "Status"]])
-    ##########################################################################
+        if patienten_des_ma.empty:
+            # Noch keine Patienten → OK
+            return True
+
+        vorhandene_arten = patienten_des_ma["Pflegeart"].unique()
+
+        if len(vorhandene_arten) == 1 and vorhandene_arten[0] == neue_pflegeart:
+            return True
+        else:
+            return False
+
+    # --- Algo3: Heim-Platz prüfen ---
+    def freie_plaetze(df_heime, df_pat):
+        belegte = df_pat.groupby("Heim-ID")["Patienten-ID"].count()
+        kapazität = df_heime.set_index("Heim-ID")["Plätze"]
+        return kapazität.subtract(belegte, fill_value=0).astype(int)
+    
+    # Filtere alle MA Pflege & Medizinischer Dienst
+    def pflege_mitarbeiter_filtern(df_mitarbeiter):
+        return df_mitarbeiter[
+            df_mitarbeiter["Abteilung"].isin(["Pflege", "Medizinischer Dienst"])
+        ].sort_values(by="Mitarbeiter-ID")
+    
+    # --- Algo4: MA Kapazität prüfen ---
+    def ma_kapazitaet_pruefen(mitarbeiter_id, df_patienten):
+        anzahl = df_patienten[df_patienten["Mitarbeiter-ID"] == mitarbeiter_id].shape[0]
+
+        if anzahl >= 24:
+            return False
+        else:
+            return True
+        
+    # --- Algo5: Verfügbare MA anzeigen ---
+    def verfügbare_mitarbeiter_ids(df_mitarbeiter, df_patienten, pflegeart):
+        df_gefiltert = pflege_mitarbeiter_filtern(df_mitarbeiter)
+        gültige_ids = []
+
+        for mid in df_gefiltert["Mitarbeiter-ID"].unique():
+            patienten = df_patienten[df_patienten["Mitarbeiter-ID"] == mid]
+
+            if patienten.empty:
+                gültige_ids.append(mid)
+            else:
+                # Prüfung 1: Nur passende Pflegeart
+                vorhandene_arten = patienten["Pflegeart"].unique()
+                if len(vorhandene_arten) == 1 and vorhandene_arten[0] == pflegeart:
+                    # Prüfung 2: Gesamtanzahl < 24
+                    if len(patienten) < 24:
+                        gültige_ids.append(mid)
+
+        return gültige_ids
+
+    
+    # --- Algo6: Verfügbare Heime anzeigen ---
+    def verfügbare_heime(df_heime, df_pat):
+        freie = freie_plaetze(df_heime, df_pat)
+        return freie[freie > 0].index.tolist()
+
+    # --- Live-Anzeige der freien Plätze ---
+    freie_plaetze_df = freie_plaetze(df_heime, df_patienten)
+
+    # 🧾 Formular anzeigen
+    st.markdown("### Neuen Patienten hinzufügen")
 
     with st.form("neuer_patient_formular"):
+        df_mitarbeiter = lade_mitarbeiter()
+        df_gefilterte_Mitarbeiter = pflege_mitarbeiter_filtern(df_mitarbeiter)
+
         neue_daten = {}
         neue_daten['Patienten-ID'] = st.text_input("Patienten-ID")
         neue_daten['Nachname'] = st.text_input("Nachname")
@@ -356,13 +448,25 @@ elif st.session_state.modus == "hinzufügen":
         neue_daten['Krankheiten'] = st.text_area("Krankheiten")
         neue_daten['Medikamente'] = st.text_area("Medikamente")
         neue_daten['Tagesdosis'] = st.text_input("Tagesdosis")
-        neue_daten['aktueller Pfleger'] = st.text_input("Zuständiger Pfleger")
-        neue_daten['aktueller Pfleger'] = st.text_input("aktueller-Pfleger")
-        neue_daten['aktueller-Pfleger-ID'] = st.text_input("aktueller-Pfleger-ID")
-        neue_daten['Pflegeart'] = st.selectbox("Pflegeart", ["Bitte wählen", "stationär", "zu Hause"])
+        neue_daten['Heim-ID'] = st.selectbox("Heim-ID", df_heime["Heim-ID"].unique())
+        neue_daten['Pflegeart'] = st.selectbox("Pflegeart", ["Bitte wählen", "stationär", "ambulant"])
+        neue_daten['Mitarbeiter-ID'] = st.selectbox("Zuständiger Mitarbeiter", df_gefilterte_Mitarbeiter)       
         neue_daten['Tagebuch-ID'] = st.text_input("Tagebuch-ID")
-        neue_daten['Heim-ID'] = st.text_input("Heim-ID")
-        neue_daten['Zimmernummer'] = st.text_input("Zimmernummer")
+        neue_daten["Zimmernummer"] = st.text_input("Zimmernummer")
+        if neue_daten["Mitarbeiter-ID"]:
+            mitarbeiter_id = neue_daten["Mitarbeiter-ID"]
+            
+            # Suche nach dem Mitarbeiter
+            mitarbeiter_info = df_mitarbeiter[df_mitarbeiter["Mitarbeiter-ID"] == mitarbeiter_id]
+
+            if not mitarbeiter_info.empty:
+                vorname = mitarbeiter_info.iloc[0]["Vorname"]
+                nachname = mitarbeiter_info.iloc[0]["Nachname"]
+                Name = f"{vorname} {nachname}"
+                neue_daten["Mitarbeiter"] = Name
+            else:
+                neue_daten["Mitarbeiter"] = ""
+        
 
         submitted = st.form_submit_button("Speichern")
         zurück = st.form_submit_button("Zurück")
@@ -372,112 +476,39 @@ elif st.session_state.modus == "hinzufügen":
         st.rerun()
 
     if submitted:
-        pflichtfelder = ["Patienten-ID", "Nachname", "Vorname", "Pflegeart"]
-        fehlende = [feld for feld in pflichtfelder if not neue_daten[feld].strip()]
+        fehlende = [feld for feld in ["Patienten-ID", "Nachname", "Vorname"] if not neue_daten[feld].strip()]
         if neue_daten['Pflegeart'] == "Bitte wählen":
             fehlende.append("Pflegeart")
 
         if fehlende:
             st.error(f"Bitte fülle folgende Pflichtfelder aus: {', '.join(fehlende)}")
         else:
-            if neue_daten['Patienten-ID'] in st.session_state.df_patienten['Patienten-ID'].values:
-                st.error("Diese Patienten-ID existiert bereits.")
-            else:
-                neue_patienten_df = pd.DataFrame([neue_daten])
-                st.session_state.df_patienten = pd.concat([st.session_state.df_patienten, neue_patienten_df],
-                                                          ignore_index=True)
-                st.session_state.df_patienten.to_csv("Patienten.csv", index=False)
-                reload_data()
-                st.success("Patient hinzugefügt!")
-                st.session_state.modus = "liste"
-                st.rerun()
+            # ALGO-PRÜFUNGEN bei Speicher-Trigger
+            warnung = False
+            if not genug_mitarbeiter_verfügbar(df_patienten):
+                st.warning("❌ Es sind nicht genug Mitarbeiter mit Kapazität verfügbar.")
+                warnung = True
+            if not spezialisiert_mitarbeiter(neue_daten["Mitarbeiter-ID"], neue_daten["Pflegeart"], df_patienten):
+                st.warning("❌ Kein geeigneter Mitarbeiter verfügbar (stationär/ambulant darf nicht gemischt werden).")
+                warnung = True
+            if not ma_kapazitaet_pruefen(mitarbeiter_id, df_patienten):
+                verfügbare_ids = verfügbare_mitarbeiter_ids(df_mitarbeiter, df_patienten, neue_daten["Pflegeart"])
+                st.warning(f"❌ Mitarbeiter {mitarbeiter_id} ist voll ausgelastet! \n\n Folgende Mitarbeiter sind noch verfügbar: {verfügbare_ids}")
+                warnung = True
+            if freie_plaetze_df.get(neue_daten['Heim-ID'], 0) <= 0:
+                freie_heim_ids = verfügbare_heime(df_heime, df_patienten)
+                st.warning(
+                    f"❌ Heim {neue_daten['Heim-ID']} ist voll. Patient kann nicht gespeichert werden. \n\n Folgende(r) Heim(e) bieten Platz: {freie_heim_ids}"
+                )
+                warnung = True
 
-# Messwerte anzeigen, falls ein Patient ausgewählt
-if st.session_state.ausgewählter_patient:
-    patientenwerte = st.session_state.df_werte[
-        st.session_state.df_werte["Patienten-ID"] == st.session_state.ausgewählter_patient]
-    st.markdown("### Messwerte")
-    if not patientenwerte.empty:
-        st.dataframe(patientenwerte.sort_values(by="Zeitpunkt", ascending=False), use_container_width=True)
-    else:
-        st.info("Noch keine Messwerte vorhanden.")
+            if warnung:
+                st.stop()
 
-    st.markdown("### Neuen Messwert hinzufügen")
-    with st.form("werte_formular"):
-        datum = st.date_input("Datum", value=datetime.date.today())
-        uhrzeit = st.time_input("Uhrzeit", value=datetime.datetime.now().time())
-        zeitpunkt = datetime.datetime.combine(datum, uhrzeit)
-
-        hgb = st.number_input("Hämoglobin (g/dL)", min_value=0.0, step=0.1)
-        sys = st.number_input("Blutdruck Systolisch", min_value=0)
-        dia = st.number_input("Blutdruck Diastolisch", min_value=0)
-        puls = st.number_input("Puls", min_value=0)
-        atmung = st.number_input("Atmung", min_value=0)
-        temperatur = st.number_input("Temperatur (°C)", min_value=25.0, max_value=45.0, step=0.1)
-        bz = st.number_input("Blutzucker", min_value=0)
-        sturz = st.selectbox("Sturzsensor", [0, 1])
-        alarm = st.selectbox("Alarm", [0, 1])
-        tod = st.selectbox("Tod", [0, 1])
-        submit = st.form_submit_button("Speichern")
-
-    if submit:
-        st.session_state.warnungen.clear()
-
-        pruefe("Hämoglobin", hgb, 12, 18)
-        pruefe("Systolischer Blutdruck", sys, 90, 140)
-        pruefe("Diastolischer Blutdruck", dia, 60, 90)
-        pruefe("Puls", puls, 50, 100)
-        pruefe("Atmung", atmung, 12, 20)
-        pruefe("Temperatur", temperatur, 36.0, 37.5)
-        pruefe("Blutzucker", bz, 70, 140)
-
-        if st.session_state.warnungen:
-
-            neuer_wert = {
-                "Patienten-ID": st.session_state.ausgewählter_patient,
-                "Zeitpunkt": zeitpunkt,
-                "Blutwerte (Hämoglobin)": hgb,
-                "Blutdruck Sys": sys,
-                "Blutdruck Dia": dia,
-                "Puls": puls,
-                "Atmung": atmung,
-                "Temperatur": temperatur,
-                "Blutzucker": bz,
-                "Sturzsensor": sturz,
-                "Alarm": "1",
-                "Tod": tod
-            }
-            st.session_state.df_werte = pd.concat([st.session_state.df_werte, pd.DataFrame([neuer_wert])],
-                                                  ignore_index=True)
-            st.session_state.df_werte.to_csv("Werte.csv", index=False)
-            reload_data()
-        else:
-            neuer_wert = {
-                "Patienten-ID": st.session_state.ausgewählter_patient,
-                "Zeitpunkt": zeitpunkt,
-                "Blutwerte (Hämoglobin)": hgb,
-                "Blutdruck Sys": sys,
-                "Blutdruck Dia": dia,
-                "Puls": puls,
-                "Atmung": atmung,
-                "Temperatur": temperatur,
-                "Blutzucker": bz,
-                "Sturzsensor": sturz,
-                "Alarm": alarm,
-                "Tod": tod
-            }
-            st.session_state.df_werte = pd.concat([st.session_state.df_werte, pd.DataFrame([neuer_wert])],
-                                                  ignore_index=True)
-            st.session_state.df_werte.to_csv("Werte.csv", index=False)
-            reload_data()
-            st.success("Messwert gespeichert!")
+            # Wenn alles okay → speichern
+            neue_df = pd.DataFrame([neue_daten])
+            st.session_state.df_patienten = pd.concat([df_patienten, neue_df], ignore_index=True)
+            st.session_state.df_patienten.to_csv("Faker/Patienten.csv", index=False)
+            st.success("Patient wurde erfolgreich hinzugefügt!")
+            st.session_state.modus = "liste"
             st.rerun()
-
-if letzter_alarm_aktiv():
-    if darf_popup_anzeigen():
-        st.session_state.popup_visible = True
-        play_alarm_sound()
-        show_popup()
-    else:
-        st.session_state.popup_visible = False
-st.write(st.session_state.warnungen)

@@ -1,12 +1,13 @@
 import streamlit as st
 
+if "Name" not in st.session_state:
+    st.session_state.Name = None
 
 nav_bar1, nav_bar2 = st.columns(2)
 with nav_bar1:
         suche = st.text_input("",
-                              placeholder="Suche",
+                              placeholder="Suche 🔍",
                               label_visibility="collapsed",
-                              icon="🔍",
                               )
 
 with nav_bar2:
@@ -25,3 +26,4 @@ with nav_bar2:
                         st.write("Du wirst ausgeloggt")
 
 st.title("Welcome")
+st.subheader(f"{st.session_state.Name}")

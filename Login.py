@@ -1,10 +1,5 @@
 import streamlit as st
 import pandas as pd
-from snowflake.snowpark.functions import position
-
-if "sidebar_anzeigen" not in st.session_state:
-    st.session_state.sidebar_anzeigen = "hidden"
-
 
 # --- Funktion: Login prüfen ---
 def check_login(username, password, login_df):
@@ -19,6 +14,17 @@ def load_login_data():
 # --- Session State initialisieren ---
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+if "Name" not in st.session_state:
+    st.session_state.Name = None
+
+def extrahiere_namen(email):
+    try:
+        teil = email.split('@')[0]  # z.B. 'felicitas.dowerg'
+        vorname, nachname = teil.split('.')
+        Name = (f"{vorname.capitalize()} {nachname.capitalize()}")
+        return Name
+    except Exception as e:
+        return None
 
 # --- Hauptlogik: Login oder App anzeigen ---
 def login_page():
@@ -30,27 +36,30 @@ def login_page():
     if st.button("Anmelden"):
         login_df = load_login_data()
         if check_login(username, password, login_df):
+            Name = extrahiere_namen(username)
+            st.session_state.Name = Name
             st.success("Login erfolgreich!")
             st.session_state.logged_in = True
         else:
             st.error("Ungültige Anmeldedaten!")
 
-# --- Wenn eingeloggt, restliche App zeigen ---
-pg = st.navigation([st.Page("Welcome.py"), st.Page("Heime.py"), st.Page("News.py"),
-                    st.Page("Mitarbeiter.py"), st.Page("Patienten_neu.py"), st.Page("Events.py"),
-                    ],
-                   position=st.session_state.sidebar_anzeigen,
-)
+def sidebar_anzeigen():
+    # --- Wenn eingeloggt, restliche App zeigen ---
+    pg = st.navigation([st.Page("Welcome.py"), st.Page("Heime.py"), st.Page("News.py"),
+                        st.Page("Mitarbeiter.py"), st.Page("Patienten.py"), st.Page("Events.py"),
+                        ],
+                       position="sidebar",
+                       expanded=True,
+    )
+    pg.run()
 
 
 # --- Ausführung ---
 def main():
     if st.session_state.logged_in:
-        st.session_state.sidebar_anzeigen = "sidebar"
-        pg.run()
+        sidebar_anzeigen()
     else:
         login_page()
-        st.session_state.sidebar_anzeigen = "hidden"
 
 
 if __name__ == "__main__":
