@@ -1,0 +1,201 @@
+Medikament-ID,Name,Hersteller,Dosierung,Einheit,Darreichungsform,Anwendungsgebiet,Verordner,Beginn Verordnung,Ende Verordnung
+MED0001,MedikaOhbV,Henschel Hauffer AG & Co. KG,1000,mg,Tablette,Magenprobleme,Mijo Weihmann,2025-03-28,2025-04-19
+MED0002,MedikaBcbf,Heintze GmbH & Co. OHG,250,mg,Kapsel,Schmerzen,Karl-Jürgen Gumprich,2024-11-19,2025-08-20
+MED0003,MedikaAoCL,Albers Werner e.V.,1000,mg,Tropfen,Magenprobleme,Univ.Prof. Heimo Karge,2024-01-04,2024-06-05
+MED0004,MedikaWvgf,Dietz Klemt GmbH,750,mg,Salbe,Parkinson,Rosalia Beyer,2024-11-29,2025-06-21
+MED0005,MedikayfJs,Schönland,50,mg,Tablette,Entzündungen,Leonie Gröttner,2024-11-11,2024-11-29
+MED0006,MedikaoXsf,Ditschlerin GmbH,100,mg,Salbe,Entzündungen,Insa Schuster,2025-02-13,2025-04-03
+MED0007,MedikawnQr,Stoll,1000,ml,Kapsel,Asthma,Leif Schuster,2023-10-18,2025-05-15
+MED0008,MedikakDyr,Stroh,750,ml,Tablette,Schmerzen,Univ.Prof. Gotthilf Wilmsen B.Sc.,2023-11-30,2023-12-23
+MED0009,Medikauzre,Rosenow Stiftung & Co. KG,1000,ml,Lösung,Demenz,Diana Sölzer,2024-06-14,2025-10-12
+MED0010,MedikaPDjq,Hentschel Stiftung & Co. KGaA,100,mg,Lösung,Diabetes,Nathalie Sauer,2024-04-23,2025-04-08
+MED0011,MedikaxoiG,Conradi Wende AG,50,ml,Tablette,Herz-Kreislauf,Cornelius Schottin,2023-10-10,2025-04-04
+MED0012,MedikaMeyy,Mosemann,250,ml,Tablette,Magenprobleme,Yasmin Röhrdanz,2025-03-05,2025-03-08
+MED0013,MedikaUhRI,Wilmsen Segebahn GmbH,500,mg,Injektion,Diabetes,Gabriel Lübs,2023-10-09,2023-10-11
+MED0014,MedikaUUqG,Patberg AG,750,ml,Tropfen,Schlafstörungen,Sibilla Schwital,2024-06-20,2024-10-06
+MED0015,MedikaxWkI,Ackermann,250,mg,Tropfen,Diabetes,Janna Bähr,2023-09-05,2024-07-02
+MED0016,MedikaZtpd,Rosenow AG,50,mg,Lösung,Diabetes,Pascal Neureuther,2025-01-31,2025-12-07
+MED0017,MedikaIXii,Mülichen,100,mg,Injektion,Demenz,Ing. Jose auch Schlauchin,2024-04-19,2024-08-25
+MED0018,MedikaIWUS,Trüb GmbH,500,ml,Kapsel,Herz-Kreislauf,Marie-Therese Seip-Köster,2024-04-30,2025-03-03
+MED0019,Medikahpoe,Bärer Schacht KG,250,mg,Tropfen,Demenz,Prof. Emil Albers B.Sc.,2024-11-13,2024-12-06
+MED0020,Medikaecve,Hellwig,1000,mg,Salbe,Depression,Marie-Luise Neureuther,2023-11-19,2024-02-27
+MED0021,MedikaKKEp,Ladeck Grein Groth AG,100,mg,Kapsel,Asthma,Maurice Losekann,2024-02-29,2024-11-24
+MED0022,MedikaUdRP,Dippel,500,ml,Tropfen,Magenprobleme,Hans-Wolfgang Vogt,2024-02-18,2025-09-13
+MED0023,MedikapmmI,Etzold Löchel AG & Co. KGaA,750,mg,Tropfen,Herz-Kreislauf,Irmgard Hering,2025-03-15,2025-04-04
+MED0024,MedikaZJgd,Reuter,50,mg,Tablette,Herz-Kreislauf,Zbigniew Davids,2025-04-22,2025-11-09
+MED0025,MedikakAFE,Kühnert AG,500,ml,Tablette,Entzündungen,Dipl.-Ing. Abdullah Krebs,2023-12-26,2025-07-12
+MED0026,MedikaDsBS,Ziegert,750,ml,Kapsel,Depression,Dr. Cordula Hübel B.A.,2025-05-23,2025-09-19
+MED0027,MedikaIdVu,Binner KG,500,ml,Tropfen,Asthma,Prof. Trudi Radisch B.A.,2023-07-27,2024-10-11
+MED0028,MedikaleMe,Heinz,100,ml,Kapsel,Entzündungen,Berta Roskoth-Hentschel,2024-08-11,2024-08-30
+MED0029,MedikafAQL,Preiß,1000,ml,Tropfen,Schlafstörungen,Valeria Heß,2023-11-12,2025-05-12
+MED0030,Medikapqzi,Seidel,500,ml,Lösung,Entzündungen,Irina Jopich,2025-04-24,2025-11-29
+MED0031,MedikaaDNK,Briemer KG,100,ml,Tablette,Bluthochdruck,Janus Hettner B.A.,2025-04-27,2025-11-17
+MED0032,Medikapxsk,Ring Tlustek GmbH,50,mg,Tropfen,Schmerzen,Meinolf Röhrdanz,2024-01-20,2025-04-25
+MED0033,Medikaiqhg,Röhrdanz,1000,ml,Salbe,Diabetes,Franz-Peter Holzapfel-Schleich,2023-11-16,2024-08-02
+MED0034,MedikaROqG,Hermann Birnbaum AG,500,ml,Salbe,Asthma,Ing. Angela Adler,2024-02-14,2024-05-11
+MED0035,MedikaqkVC,Trapp,750,ml,Salbe,Bluthochdruck,Prof. Aenne Dowerg,2023-08-09,2025-09-05
+MED0036,MedikajIcx,Rohleder,1000,mg,Tropfen,Infektionen,Heinz-Dieter Eckbauer-Berger,2024-01-27,2025-10-06
+MED0037,MedikaYcwn,Hering,250,ml,Tablette,Demenz,Hans D. Zahn,2024-07-28,2025-10-12
+MED0038,MedikaNVjp,Gierschner GmbH & Co. KG,500,mg,Injektion,Bluthochdruck,Dietrich Walter,2025-04-20,2025-10-23
+MED0039,MedikaAZQV,Hethur AG & Co. KGaA,1000,ml,Salbe,Schmerzen,Hans-J. Bender,2025-03-03,2025-05-05
+MED0040,MedikaDwtY,Hauffer AG,750,mg,Tropfen,Demenz,Hans-Walter Jüttner B.Eng.,2025-03-07,2025-12-05
+MED0041,MedikarwPG,Stiebitz Reising GmbH,1000,mg,Kapsel,Herz-Kreislauf,Bogdan Heß,2023-10-24,2025-11-15
+MED0042,MedikaqcgM,Kaul Vollbrecht e.V.,100,mg,Salbe,Herz-Kreislauf,Ilonka auch Schlauchin,2025-06-03,2025-06-25
+MED0043,MedikaKmqc,Mälzer,500,mg,Tablette,Herz-Kreislauf,Johan Renner,2024-10-29,2025-11-20
+MED0044,MedikaVQmx,Bohnbach Stadelmann GmbH,250,mg,Tablette,Entzündungen,Mariana Ebert,2024-11-22,2025-03-18
+MED0045,MedikatQAu,Textor Hübel KG,750,mg,Tablette,Magenprobleme,Drago Linke-Stadelmann,2025-05-02,2025-10-02
+MED0046,MedikalNKt,Rogge Ackermann GmbH,500,mg,Salbe,Schmerzen,Denise Losekann,2025-01-09,2025-08-03
+MED0047,MedikauDCC,Hamann,100,ml,Salbe,Schmerzen,Univ.Prof. Christa-Maria Sorgatz B.Sc.,2024-01-09,2025-04-21
+MED0048,MedikaNvfW,Steinberg GmbH,250,ml,Kapsel,Infektionen,Dr. Claus-Dieter Barth B.Sc.,2023-12-11,2024-11-24
+MED0049,MedikaXeDA,Ruppert,1000,mg,Tropfen,Demenz,Oscar Textor MBA.,2024-06-10,2024-10-22
+MED0050,MedikaPSaW,Wulff GmbH & Co. KG,500,ml,Injektion,Infektionen,Dr. Roman Textor MBA.,2023-07-22,2024-02-25
+MED0051,MedikahDiZ,Stahr Radisch KG,500,mg,Kapsel,Entzündungen,Viviane Wende,2025-03-27,2025-09-04
+MED0052,MedikaUGBJ,Freudenberger Weimer GmbH & Co. KGaA,50,ml,Tablette,Schlafstörungen,Ellen Weitzel B.A.,2025-02-18,2025-05-12
+MED0053,MedikaXHFO,Höfig GmbH & Co. KG,750,mg,Salbe,Entzündungen,Olaf Hörle,2023-12-04,2024-08-09
+MED0054,MedikaIfij,Kraus Stiftung & Co. KG,50,mg,Tropfen,Depression,Nikolas Hamann-Bolnbach,2024-04-13,2024-11-01
+MED0055,MedikaDAdn,Krebs Winkler KG,50,mg,Tablette,Bluthochdruck,Stanislaw Wieloch,2024-08-09,2025-04-01
+MED0056,MedikawtWy,Renner Weinhold Stiftung & Co. KGaA,250,mg,Salbe,Entzündungen,Dipl.-Ing. Emanuel Heydrich MBA.,2024-06-04,2025-01-07
+MED0057,MedikaQRZz,Gehringer,250,ml,Kapsel,Infektionen,Trudi Eckbauer B.Sc.,2025-04-08,2025-09-03
+MED0058,MedikaQbfP,Ernst Misicher AG & Co. KGaA,100,ml,Kapsel,Asthma,Folkert Kramer,2024-02-09,2024-12-11
+MED0059,MedikavWyr,Herrmann Butte GmbH & Co. KGaA,500,mg,Tablette,Diabetes,Philip Reuter,2023-07-24,2025-11-02
+MED0060,MedikaoPeX,Benthin,1000,ml,Lösung,Parkinson,William Hentschel,2023-11-08,2023-11-23
+MED0061,MedikajpiE,Drewes,500,ml,Tropfen,Bluthochdruck,Holger Thies B.Eng.,2024-12-26,2025-02-23
+MED0062,MedikaMVTh,Jockel AG,1000,mg,Tablette,Parkinson,Vito Jockel,2024-08-09,2025-10-30
+MED0063,MedikayzTm,Scheel Stiftung & Co. KG,1000,ml,Tablette,Entzündungen,Herr Nicolai Wirth B.Eng.,2025-02-25,2025-08-19
+MED0064,MedikahYKY,Kensy KG,100,mg,Salbe,Asthma,Univ.Prof. Gundel Bohnbach,2024-06-19,2024-12-21
+MED0065,MedikaAFgB,Schuster Mies Stiftung & Co. KG,100,ml,Kapsel,Demenz,Heinz-Joachim Gierschner-Wagner,2024-06-30,2025-06-11
+MED0066,MedikaNZIX,Mohaupt Mälzer Stiftung & Co. KGaA,500,mg,Tablette,Asthma,Friedlinde Henschel,2025-02-11,2025-03-09
+MED0067,MedikaCpWD,Schmidt,750,mg,Tablette,Depression,Gerlind Baum-Oderwald,2025-02-26,2025-04-20
+MED0068,MedikanwZq,Holt Schenk Stiftung & Co. KG,750,mg,Tablette,Entzündungen,Kriemhild Atzler,2024-06-27,2024-10-07
+MED0069,MedikapUAF,Werner,100,ml,Injektion,Asthma,Univ.Prof. Ibrahim Seidel MBA.,2024-05-08,2024-05-18
+MED0070,MedikasozS,Jäkel OHG mbH,100,ml,Tablette,Schmerzen,Isabelle Röhrdanz,2024-07-07,2025-02-15
+MED0071,MedikaVJvw,Metz,500,mg,Injektion,Demenz,Florence Hermann,2023-12-01,2025-05-21
+MED0072,MedikauhVI,Gorlitz,500,ml,Injektion,Magenprobleme,Ekrem Warmer MBA.,2024-01-03,2025-02-25
+MED0073,MedikaWHMs,Gude GmbH,1000,ml,Kapsel,Entzündungen,Ing. Dietrich Jacobi Jäckel B.Sc.,2024-11-13,2025-01-02
+MED0074,MedikacdJs,Eberth,250,mg,Tablette,Schlafstörungen,Frau Steffi Aumann B.Eng.,2024-05-23,2025-01-29
+MED0075,MedikaldqE,Bolzmann GmbH,1000,mg,Tropfen,Herz-Kreislauf,Frau Leokadia Schuchhardt B.Sc.,2023-10-04,2025-07-16
+MED0076,Medikatfph,Wieloch,50,mg,Salbe,Asthma,Prof. Lilli Zobel,2024-09-09,2025-09-02
+MED0077,MedikayCCt,Lorch,750,mg,Tablette,Infektionen,Lara Scholl,2023-07-29,2025-11-10
+MED0078,MedikagWnO,Hettner OHG mbH,50,mg,Tablette,Schlafstörungen,Dagobert Henck,2023-10-20,2023-12-18
+MED0079,MedikaaACS,Möchlichen,50,mg,Injektion,Diabetes,Alwina Heinrich,2024-01-12,2024-07-28
+MED0080,MedikaDeRo,Zirme Zorbach KGaA,750,mg,Salbe,Schlafstörungen,Heini Drewes B.A.,2024-09-30,2025-11-04
+MED0081,Medikajedk,Scheibe Weiß KG,50,mg,Injektion,Depression,Imke Ebert,2024-05-23,2024-11-12
+MED0082,MedikazrGI,Mangold Butte KG,750,ml,Lösung,Entzündungen,Tillmann Löwer,2024-12-03,2025-07-18
+MED0083,MedikabfoR,Schaaf,1000,ml,Kapsel,Demenz,Ralph Steinberg,2025-02-04,2025-08-03
+MED0084,MedikaWWlE,Siering,500,mg,Tropfen,Depression,Traute Holsten B.A.,2025-06-12,2025-09-01
+MED0085,MedikaFfEw,Kade Jungfer OHG mbH,250,ml,Lösung,Diabetes,Stavros Fritsch,2024-02-11,2025-05-22
+MED0086,MedikasQzW,Beier,50,ml,Salbe,Schlafstörungen,Annita Jopich B.Eng.,2024-02-06,2025-11-24
+MED0087,MedikazGaQ,Misicher,50,mg,Salbe,Entzündungen,Frau Constanze Pohl,2024-03-06,2025-07-09
+MED0088,MedikaOCWd,Hethur KG,750,ml,Kapsel,Herz-Kreislauf,Vinzenz Hövel-Mangold,2025-03-20,2025-07-28
+MED0089,MedikabOMZ,Tröst AG & Co. KGaA,50,mg,Lösung,Demenz,Kordula Austermühle,2024-07-23,2024-09-08
+MED0090,MedikahDhP,Ortmann Stiftung & Co. KG,100,ml,Salbe,Magenprobleme,Josefine Trapp,2024-01-01,2025-08-18
+MED0091,MedikaEpDJ,Kraus AG & Co. OHG,250,mg,Tropfen,Infektionen,Steve Bohnbach-Hofmann,2024-12-31,2025-10-25
+MED0092,MedikavYGr,Holzapfel Stiftung & Co. KGaA,250,mg,Kapsel,Demenz,Senta Schaaf,2024-08-12,2025-07-01
+MED0093,MedikajCIE,Kade Rohleder e.G.,50,mg,Tropfen,Infektionen,Irena Jungfer-Graf,2025-05-31,2025-07-17
+MED0094,MedikayoXA,Junck Stiftung & Co. KGaA,100,ml,Lösung,Schlafstörungen,Univ.Prof. Traude Kranz MBA.,2025-06-06,2025-11-05
+MED0095,MedikaPjFc,Paffrath KG,100,ml,Kapsel,Depression,Stefani Ditschlerin,2025-03-15,2025-07-14
+MED0096,MedikaHDaU,Lange KGaA,1000,ml,Salbe,Asthma,Arne Möchlichen-Zänker,2025-05-23,2025-07-31
+MED0097,MedikaSzPf,Steuer Reinhardt GmbH,250,mg,Tablette,Depression,Luzie Trupp,2025-03-24,2025-07-31
+MED0098,MedikaIcNe,Schüler OHG mbH,500,ml,Tablette,Bluthochdruck,Dorothea Weinhold,2023-08-20,2025-11-26
+MED0099,MedikaWOTg,Geisel Täsche GmbH,250,mg,Tropfen,Demenz,Anatolij Junk,2025-01-17,2025-04-24
+MED0100,MedikaxBjp,Langern,100,ml,Salbe,Magenprobleme,Dr. Diethard Budig,2024-09-02,2025-02-28
+MED0101,MedikaRpFL,Heinrich GmbH & Co. KG,500,mg,Tablette,Diabetes,Irma Hermighausen,2024-10-14,2025-11-01
+MED0102,MedikaDsRI,Briemer GmbH & Co. KG,1000,mg,Salbe,Bluthochdruck,Liesbeth Jacob,2024-09-24,2025-04-01
+MED0103,MedikaqDtm,Nette Döring GbR,250,mg,Injektion,Schmerzen,Lea Klemt-Ruppert,2024-01-17,2025-05-19
+MED0104,MedikabQzr,Rosemann OHG mbH,50,ml,Lösung,Bluthochdruck,Ullrich auch Schlauchin,2024-12-10,2025-10-14
+MED0105,MedikasXZo,Kitzmann,250,mg,Tropfen,Entzündungen,Univ.Prof. Donald Scholl B.Eng.,2024-10-22,2025-08-20
+MED0106,MedikaQRiO,Schottin KGaA,1000,mg,Lösung,Infektionen,Gernot Zirme,2024-05-02,2025-04-10
+MED0107,MedikaUifs,Weinhold Liebelt AG & Co. KGaA,500,mg,Kapsel,Schmerzen,Celal Zimmer B.Eng.,2024-07-07,2025-10-30
+MED0108,MedikakqEZ,Weinhold Kambs e.V.,100,ml,Tablette,Schmerzen,Horst-Dieter Bruder,2023-09-26,2025-11-17
+MED0109,MedikaRURz,Kobelt,1000,ml,Injektion,Depression,Rigo Kroker,2023-06-26,2024-10-22
+MED0110,MedikaDxRV,Hesse,1000,mg,Lösung,Schmerzen,Rotraut Schweitzer-Köhler,2023-09-03,2024-03-16
+MED0111,MedikabNJu,Hartung,1000,mg,Injektion,Bluthochdruck,Manuel Mitschke,2025-04-09,2025-06-23
+MED0112,MedikaAhic,Jähn GmbH & Co. KGaA,500,mg,Kapsel,Asthma,Benedikt Heinz,2025-03-24,2025-04-29
+MED0113,MedikaDxQV,Reuter,250,ml,Kapsel,Entzündungen,Prof. Natalie Vogt,2023-10-06,2024-09-02
+MED0114,MedikagFNA,Beckmann Stumpf GmbH,50,mg,Injektion,Herz-Kreislauf,Helfried Martin B.A.,2025-03-01,2025-03-29
+MED0115,MedikaRxIP,Bolander Kruschwitz GbR,250,mg,Lösung,Herz-Kreislauf,Yusuf Eberhardt MBA.,2023-08-21,2024-02-16
+MED0116,MedikaOMbd,Henk Eberth e.V.,1000,ml,Tropfen,Infektionen,Apostolos Wieloch B.A.,2024-08-17,2025-09-15
+MED0117,MedikaovXj,Adler,250,mg,Tablette,Demenz,Sina Fiebig,2025-06-05,2025-09-17
+MED0118,MedikaZlhQ,Eigenwillig AG,100,ml,Tablette,Diabetes,Rebekka Zirme,2023-12-06,2024-08-01
+MED0119,Medikalqdi,Linke,750,ml,Lösung,Magenprobleme,Petar Bolnbach,2024-05-28,2025-08-11
+MED0120,MedikaGLgC,Hartung,250,ml,Salbe,Infektionen,Ottmar Ziegert,2025-04-09,2025-09-20
+MED0121,MedikatDPb,Naser GmbH,50,ml,Salbe,Entzündungen,Univ.Prof. Babett Noack,2024-11-17,2025-05-10
+MED0122,MedikafuMj,Eberth GbR,250,mg,Tropfen,Parkinson,Hanna Schenk,2024-07-07,2025-03-02
+MED0123,MedikaMBgY,Drewes,50,mg,Lösung,Parkinson,Heinz-Dieter Mentzel B.A.,2024-04-13,2025-08-31
+MED0124,MedikazAUg,Loos Johann OHG mbH,50,ml,Salbe,Herz-Kreislauf,Gusti Fliegner,2024-10-29,2025-05-12
+MED0125,MedikafffB,Weinhage Stiftung & Co. KGaA,1000,mg,Tropfen,Demenz,Rosel Ehlert,2024-07-26,2025-05-19
+MED0126,MedikaJJvQ,Langern GmbH,750,ml,Tropfen,Parkinson,Univ.Prof. Anita Hövel,2024-08-27,2025-02-10
+MED0127,MedikaKGnj,Nerger,250,ml,Tropfen,Demenz,Herr Hanni Röhricht B.Eng.,2023-09-07,2024-04-25
+MED0128,MedikaoZBJ,Schmiedecke,750,mg,Kapsel,Parkinson,Leif Sontag,2025-02-10,2025-05-03
+MED0129,MedikalrSW,Kambs Killer AG,1000,ml,Tropfen,Magenprobleme,Dr. Karl-Wilhelm Sontag,2024-04-03,2024-06-30
+MED0130,MedikaObfV,Hande,100,ml,Injektion,Infektionen,Hilda Metz-Karge,2023-10-08,2024-06-12
+MED0131,MedikauXKM,Birnbaum AG & Co. KG,50,ml,Lösung,Entzündungen,Prof. Andree Steuer,2023-08-14,2024-08-26
+MED0132,MedikaBFMC,Heydrich Hande e.G.,500,ml,Injektion,Asthma,Hagen Losekann,2023-09-04,2025-03-21
+MED0133,MedikaLFHQ,Bien Hartmann GmbH,500,mg,Salbe,Asthma,Adalbert Haase,2024-01-22,2024-06-16
+MED0134,MedikaiWqs,Dussen van Albers GmbH & Co. KGaA,1000,mg,Tropfen,Diabetes,Dr. Birgitt Kramer,2024-07-08,2024-11-05
+MED0135,MedikaJQZw,Kruschwitz Stiftung & Co. KGaA,250,ml,Tablette,Entzündungen,Heinz-Josef Bähr,2024-05-16,2024-06-30
+MED0136,MedikauKBK,Tröst Schwital GmbH & Co. KG,1000,ml,Kapsel,Entzündungen,Belinda Lachmann,2023-07-01,2024-04-17
+MED0137,MedikaZNDS,Cichorius Mälzer AG,100,mg,Tablette,Entzündungen,Dipl.-Ing. Klaus-Werner Kühnert B.Sc.,2024-03-30,2024-10-09
+MED0138,MedikavovX,Buchholz GmbH & Co. OHG,500,mg,Injektion,Parkinson,Josip Pergande,2023-11-04,2025-06-25
+MED0139,MedikawUPj,Dobes AG & Co. KG,1000,mg,Tropfen,Magenprobleme,Cäcilia Gerlach,2024-08-28,2025-08-23
+MED0140,MedikaPelX,Nohlmans,500,ml,Injektion,Entzündungen,Norma Rose MBA.,2024-10-25,2025-10-26
+MED0141,MedikaPONu,Jopich,100,mg,Tablette,Parkinson,Heinz-Walter Börner-Möchlichen,2024-05-03,2024-10-28
+MED0142,MedikarLdw,Briemer,100,mg,Tropfen,Infektionen,Irmengard Mentzel,2023-07-13,2024-06-03
+MED0143,MedikasePf,Scheibe,500,mg,Salbe,Entzündungen,Irmgard Salz-Röhrdanz,2025-05-12,2025-10-19
+MED0144,MedikacCZK,Graf,50,ml,Kapsel,Asthma,Lisette Mülichen,2024-06-15,2025-11-21
+MED0145,MedikaCgZv,Caspar,1000,ml,Injektion,Schlafstörungen,Herr Falk Trommler,2024-04-30,2025-01-16
+MED0146,MedikaHNkx,Holzapfel Kraushaar GmbH & Co. KG,1000,ml,Salbe,Asthma,Mariola Scheuermann,2023-07-24,2025-01-26
+MED0147,Medikavevg,Stiebitz,100,ml,Injektion,Demenz,Eugenia Herrmann-Ullrich,2025-02-26,2025-12-04
+MED0148,MedikaMjvf,Spieß,100,ml,Salbe,Asthma,Vadim Killer-Jessel,2025-05-22,2025-10-13
+MED0149,MedikaziMT,Jessel KG,1000,mg,Lösung,Asthma,Marcella Zorbach-Jüttner,2025-01-29,2025-08-31
+MED0150,MedikaVRHf,Steckel,50,ml,Kapsel,Demenz,Prof. Greta Bähr,2024-03-06,2024-06-30
+MED0151,MedikanvXF,Hecker AG & Co. KG,250,ml,Salbe,Diabetes,Arno Hübel-Zirme,2023-08-28,2025-06-05
+MED0152,MedikaVHcQ,Wilms Schönland AG & Co. KG,100,mg,Kapsel,Parkinson,Carmine Fröhlich-Girschner,2025-02-11,2025-10-05
+MED0153,MedikaZkUC,Langern GmbH,1000,mg,Tropfen,Entzündungen,Dipl.-Ing. Leon Hölzenbecher MBA.,2023-12-03,2024-05-28
+MED0154,MedikaZYEm,Stiebitz Rudolph GmbH & Co. KG,50,ml,Injektion,Herz-Kreislauf,Paola Holzapfel MBA.,2024-06-17,2025-01-31
+MED0155,MedikakmZM,Hermann AG,750,ml,Injektion,Bluthochdruck,Ing. Kreszentia Dobes B.Sc.,2024-01-10,2025-06-30
+MED0156,MedikarCGj,Conradi Hartung GmbH & Co. KG,100,ml,Injektion,Schlafstörungen,Uta Bauer,2024-04-13,2024-12-11
+MED0157,Medikaxpyf,Hauffer Baum GmbH,1000,mg,Salbe,Parkinson,Siegfried Trüb,2024-10-02,2025-09-14
+MED0158,MedikaicsE,Etzold,500,mg,Lösung,Demenz,Dipl.-Ing. Louise Adolph B.Sc.,2023-06-29,2024-01-09
+MED0159,MedikajJUM,Löchel,500,ml,Salbe,Magenprobleme,Reimund Hövel,2023-12-06,2024-03-05
+MED0160,MedikapAOY,Mielcarek,1000,mg,Injektion,Entzündungen,Bertold Ortmann,2024-08-24,2024-08-31
+MED0161,MedikaGKpT,Hornich GmbH & Co. KG,250,ml,Injektion,Bluthochdruck,Leonid Kitzmann,2023-12-08,2024-10-10
+MED0162,MedikaQQfH,Börner Putz KG,500,ml,Tropfen,Depression,Hans-Martin Möchlichen,2023-07-17,2024-06-22
+MED0163,MedikaxqVb,Zirme Börner GmbH,500,mg,Injektion,Schmerzen,Univ.Prof. Matthäus Schottin B.Sc.,2024-12-30,2025-09-13
+MED0164,Medikavicw,Kambs,750,mg,Injektion,Schlafstörungen,Univ.Prof. Hinrich Textor,2024-05-30,2024-09-09
+MED0165,MedikaieTX,Beier Hornig AG & Co. OHG,750,mg,Tablette,Depression,Riza Gute,2025-03-23,2025-06-15
+MED0166,MedikatGzI,Herrmann Beier e.G.,500,mg,Injektion,Schmerzen,Friedhold Klemm B.Sc.,2025-03-09,2025-06-10
+MED0167,MedikahZxB,Weimer Mans GmbH,50,ml,Injektion,Herz-Kreislauf,Zdenka Gotthard,2024-06-12,2025-03-13
+MED0168,MedikaZHrZ,Vogt GmbH & Co. KG,100,ml,Lösung,Herz-Kreislauf,Heinz-Dieter Schleich,2025-06-11,2025-07-14
+MED0169,Medikasugf,Speer Hübel GmbH,500,ml,Injektion,Demenz,Lisbeth Trupp MBA.,2023-10-15,2024-09-30
+MED0170,MedikaCcUw,Lübs,50,ml,Tablette,Magenprobleme,Mandy Zorbach,2025-05-07,2025-05-23
+MED0171,MedikaOzxG,Stiebitz,750,mg,Lösung,Entzündungen,Herr Claas Schlosser,2024-10-23,2025-04-24
+MED0172,MedikaiepX,Kobelt,1000,mg,Tropfen,Bluthochdruck,Hannchen Rosenow,2023-07-09,2023-11-22
+MED0173,MedikaCxxC,Ruppersberger AG & Co. KG,50,mg,Kapsel,Bluthochdruck,Heidemarie Johann,2024-10-02,2025-01-19
+MED0174,MedikahbVl,Pohl Kraushaar KG,750,mg,Kapsel,Schmerzen,Francis Wohlgemut,2023-12-23,2024-11-09
+MED0175,MedikaNsSF,Eberhardt AG & Co. KG,500,mg,Salbe,Entzündungen,Henner Gerlach,2025-04-02,2025-07-25
+MED0176,MedikafZRu,Kensy,500,ml,Lösung,Schmerzen,Karl Heinz Riehl,2024-01-13,2024-08-10
+MED0177,MedikakTTS,Gertz,750,mg,Kapsel,Demenz,Josefa Hauffer,2023-09-12,2024-02-24
+MED0178,MedikaipYF,Klingelhöfer KG,50,mg,Lösung,Schlafstörungen,Irmtraut Rohleder,2023-09-18,2025-09-11
+MED0179,MedikaetzT,Naser,1000,ml,Injektion,Magenprobleme,Dipl.-Ing. Ruth Ruppert,2023-08-08,2025-11-21
+MED0180,MedikaPeCD,Plath,100,mg,Salbe,Magenprobleme,Birgit Zahn,2024-07-22,2025-05-18
+MED0181,MedikaXiBG,Ebert GmbH & Co. OHG,1000,mg,Tablette,Magenprobleme,Gerfried Gehringer-Fritsch,2024-02-06,2025-05-31
+MED0182,MedikawHsf,Gunpf Schuster KG,250,mg,Salbe,Bluthochdruck,Bianca Schomber,2024-01-23,2025-01-26
+MED0183,MedikaGPkL,Fliegner,250,ml,Tropfen,Herz-Kreislauf,Univ.Prof. Ludwig Tschentscher,2025-04-04,2025-06-29
+MED0184,MedikaKcbf,Segebahn e.G.,50,ml,Tablette,Parkinson,Margarete Häring,2024-12-26,2025-05-22
+MED0185,MedikaObFO,Hoffmann,500,mg,Injektion,Herz-Kreislauf,Janet Henschel,2025-01-23,2025-09-03
+MED0186,MedikatDeS,Franke GmbH & Co. KG,1000,ml,Tropfen,Schmerzen,Dipl.-Ing. Irmi Haase,2024-02-19,2024-05-24
+MED0187,MedikaTuUw,Ehlert Wesack GmbH,500,mg,Tropfen,Infektionen,Gisbert Hendriks,2024-05-21,2024-10-21
+MED0188,Medikapjgd,Kraus Schmiedt GmbH & Co. KG,1000,ml,Salbe,Infektionen,Dr. Rudolph Junken B.Eng.,2023-11-01,2024-03-03
+MED0189,MedikaGDFt,Barkholz Conradi GmbH,500,ml,Injektion,Magenprobleme,Wilhelmine Hendriks B.A.,2024-08-14,2024-09-06
+MED0190,MedikasFMP,Möchlichen,750,ml,Lösung,Entzündungen,Kathrin Anders,2025-02-23,2025-06-30
+MED0191,MedikaqUxW,Kobelt Bien GmbH,50,ml,Injektion,Entzündungen,Kasimir Rörricht,2023-11-05,2025-01-04
+MED0192,MedikaeyGC,Holt,500,ml,Lösung,Bluthochdruck,Carlo Dietz,2024-03-29,2025-08-08
+MED0193,MedikavJxW,Gumprich KG,500,ml,Kapsel,Asthma,Jo Benthin-Bien,2023-07-14,2025-04-05
+MED0194,MedikaZEHD,auch Schlauchin GmbH & Co. OHG,100,ml,Lösung,Herz-Kreislauf,Gottlob Schmidtke-Juncken,2023-10-12,2025-12-07
+MED0195,MedikaVtLv,Pechel,250,ml,Salbe,Bluthochdruck,Univ.Prof. Kunigunda Jacob MBA.,2025-01-31,2025-05-28
+MED0196,MedikaRhAL,van der Dussen Stroh KGaA,750,mg,Tablette,Entzündungen,Kornelius Mühle,2023-12-26,2025-04-11
+MED0197,MedikaXLKo,Birnbaum,1000,ml,Injektion,Infektionen,Dr. Karolin Schuchhardt MBA.,2023-10-01,2025-04-01
+MED0198,MedikacKSh,Bähr GmbH & Co. KG,100,ml,Tropfen,Magenprobleme,Hertha Flantz,2024-04-12,2024-08-14
+MED0199,MedikaGXNE,Vogt,500,ml,Tablette,Diabetes,Nikolaos Etzler,2024-06-28,2025-04-24
+MED0200,MedikaQEHy,Gerlach Mies KG,250,mg,Injektion,Magenprobleme,Klara Klapp,2024-10-21,2025-10-20

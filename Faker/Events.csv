@@ -1,0 +1,6 @@
+Veranstaltungsnummer,Art der Veranstaltung,Titel,Veranstalter,zuständige Mitarbeiter,Teilnehmer(Pat. ID / Ang. ID / Pfleger ID),Ort der Veranstaltung,Raum,Hinweise,Datum,Beginn,Ende
+E0001,Musiknachmittag,Musiknachmittag mit Ottomar,Backnang,M0004,"P0586, P0983, A0244, M0062",Therapieraum,Raum 4,"",2025-07-11,20:21,21:21
+E0002,Kochkurs,Kochkurs mit Oskar,Kemnath,M0040,"P0446, P0472, A0007, M0050",Gemeinschaftsraum,Raum 4,"",2025-07-15,02:37,04:37
+E0003,Arztvortrag,Arztvortrag mit Kurt,Backnang,M0062,"P0149, P0665, A0261, M0021",Außenanlage,Raum 3,"",2025-06-29,06:34,07:34
+E0004,Musiknachmittag,Musiknachmittag mit Katherina,Kaiserslautern,M0044,"P0553, P0665, A0148, M0059",Gemeinschaftsraum,Raum 3,"",2025-07-12,00:24,01:24
+E0005,Musiknachmittag,Musiknachmittag mit Kirstin,Kemnath,M0015,"P0724, P0154, A0172, M0098",Mehrzweckraum,Raum 3,"",2025-07-05,06:44,08:44
