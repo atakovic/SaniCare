@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 fake = Faker("de_DE")
 
 # 1. Mitarbeiter laden
-df_mitarbeiter = pd.read_csv("/streamlit/Mitarbeiter.csv")
+df_mitarbeiter = pd.read_csv("/home/alen/PycharmProjects/PythonProject/streamlit/Faker/Mitarbeiter.csv")
 
 # 2. Nachrichtendaten generieren
 nachrichten = []
