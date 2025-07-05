@@ -33,6 +33,8 @@ if "modus" not in st.session_state:
     st.session_state.modus = "liste"  # liste, detail, hinzufügen
 if "popup_visible" not in st.session_state:
     st.session_state.popup_visible = True
+if "pg" not in st.session_state:
+        st.session_state.pg = None
 
 
 # Popup für Warnungen
@@ -44,10 +46,13 @@ with col_suche:
     suche = st.text_input("", placeholder="Nach Titel suchen", label_visibility="collapsed")
 with col_postfach:
     if st.button("Postfach", use_container_width=True):
-        st.warning("Du hast auf dein Postfach gedrückt!")
+        st.switch_page("Welcome.py")
 with col_abmelden:
     if st.button("Abmelden", use_container_width=True):
-        st.warning("Du wurdest abgemeldet.")
+        st.session_state.logged_in = False
+        st.session_state.Name = None
+        st.session_state.pg = None
+        st.rerun()  # Zurück zur Login-Seite
 
 # „Neuen News hinzufügen“-Button oben, nur im Listenmodus
 if st.session_state.modus == "liste":

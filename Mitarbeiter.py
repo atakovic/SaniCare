@@ -27,6 +27,9 @@ if "seite" not in st.session_state:
     st.session_state.seite = 0
 if "modus" not in st.session_state:
     st.session_state.modus = "liste"
+if "pg" not in st.session_state:
+        st.session_state.pg = None
+
 
 col_suche, col_postfach, col_abmelden = st.columns([3,1,1])
 with col_suche:
@@ -37,10 +40,13 @@ with col_suche:
 
 with col_postfach:
     if st.button("Postfach", use_container_width=True):
-        st.warning("Du hast auf den Postfach gedrückt!")
+        st.switch_page("Welcome.py")
 with col_abmelden:
     if st.button("Abmelden", use_container_width=True):
-        st.warning("Du wurdest abgemeldet.")
+        st.session_state.logged_in = False
+        st.session_state.Name = None
+        st.session_state.pg = None
+        st.rerun()  # Zurück zur Login-Seite
 
 if st.session_state.modus == "liste" and st.session_state.ausgewahlt_mitarbeiter is None:
     if st.button("Neuen Mitarbeiter hinzufügen", use_container_width=True):
@@ -87,17 +93,17 @@ if st.session_state.modus == "liste" and st.session_state.ausgewahlt_mitarbeiter
         return [0, "..."] + list(range(aktuelle - 1, aktuelle + 2)) + ["...", gesamt - 1]
 
     seiten_liste = Seitenliste(st.session_state.seite, seitenzahl)
-    nav_cols = st.columns(len(seiten_liste))
-    for i, item in enumerate(seiten_liste):
-        with nav_cols[i]:
-            if item == "...":
-                st.markdown("⋯")
-            elif item == st.session_state.seite:
-                st.markdown(f"**{item + 1}**")
-            else:
-                if st.button(str(item + 1), key=f"seite_{item}"):
-                    st.session_state.seite = item
-                    st.rerun()
+
+    num_cols = max(1, len(seiten_liste)) if isinstance(seiten_liste, list) else 1
+    cols = st.columns(num_cols)
+
+    for i, val in enumerate(seiten_liste):
+        if val == "...":
+            cols[i].write("...")
+        else:
+            if cols[i].button(str(val + 1), use_container_width=True):
+                st.session_state.seite = val
+                st.rerun()
 
 # Detailansicht eines Mitarbeiters
 elif st.session_state.ausgewahlt_mitarbeiter is not None:
@@ -144,22 +150,6 @@ elif st.session_state.ausgewahlt_mitarbeiter is not None:
             st.session_state.modus = "liste"
             st.rerun()
 
-    elif st.session_state.modus == "direktnachricht":
-        empfanger = Mitarbeiter
-        with st.form("nachricht_form"):
-            st.markdown(f"Nachricht an {empfanger['Vorname']} {empfanger['Nachname']}")
-            nachricht = st.text_area("Ihre Nachricht", height=150)
-            col_senden, col_zurück = st.columns(2)
-            with col_senden:
-                if st.form_submit_button("Nachrichten senden"):
-                    st.success(f"Nachricht an {empfanger['Vorname']} {empfanger['Nachname']} gesendet.")
-                    st.session_state.modus = "liste"
-                    st.rerun()
-            with col_zurück:
-                if st.form_submit_button("Zurück"):
-                    st.session_state.modus = "liste"
-                    st.rerun()
-
     else:
         # Normale Detailanzeige
         st.markdown("Mitarbeiterdetails")
@@ -179,16 +169,7 @@ elif st.session_state.ausgewahlt_mitarbeiter is not None:
                 #st.write(f"- {pat['Patienten-ID']}: {pat['Name']}")
         else:
             st.info("Keine betreuten Patienten gefunden.")
-
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("Direktnachricht"):
-                st.session_state.modus = "direktnachricht"
-                st.rerun()
-        with col2:
-            if st.button("Bearbeiten"):
-                st.session_state.modus = "bearbeiten"
-                st.rerun()
+        
 
         col3, col4 = st.columns(2)
         with col3:
@@ -204,6 +185,14 @@ elif st.session_state.ausgewahlt_mitarbeiter is not None:
             if st.button("Zurück zur Liste"):
                 st.session_state.ausgewahlt_mitarbeiter = None
                 st.rerun()
+
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Bearbeiten"):
+                st.session_state.modus = "bearbeiten"
+                st.rerun()
+        with col2:
+            print("")
 
 # Formular neue Mitarbeiter
 elif st.session_state.modus == "hinzufügen":
