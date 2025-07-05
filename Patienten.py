@@ -30,8 +30,19 @@ def lade_mitarbeiter():
 
 def letzter_alarm_aktiv():
     df = pd.read_csv("Faker/Werte.csv")
+    df_patienten = pd.read_csv("Faker/Patienten.csv")
 
     letzte_werte = df.iloc[-1]
+    patient_id = letzte_werte["Patienten-ID"]
+
+    patient = df_patienten[df_patienten["Patienten-ID"] == patient_id]
+    if not patient.empty:
+        patient = patient.iloc[0]
+        st.session_state.alarm_patient_id = patient["Patienten-ID"]
+        st.session_state.alarm_patient_name = f"{patient['Vorname']} {patient['Nachname']}"
+    else:
+        st.session_state.alarm_patient_id = "Unbekannt"
+        st.session_state.alarm_patient_name = "Unbekannt"
 
     hgb = int(letzte_werte.get("Blutwerte (Hämoglobin)"))
     sys = int(letzte_werte.get("Blutdruck Sys"))
@@ -81,7 +92,8 @@ def reload_data():
     st.session_state.df_patienten = lade_patienten()
     st.session_state.df_werte = lade_werte()
 
-# Funktion zur Anzeige der MA innerhalb des Formulars - nur Anzeige der noch verfügbaren MA und auch nur die, die zu stationär passen oder zu ambulant
+# Funktion zur Anzeige der MA innerhalb des Formulars - nur Anzeige der noch verfügbaren MA und auch nur die, 
+# die zu stationär passen oder zu ambulant
 def verfügbare_mitarbeiter(pflegeart, df_mitarbeiter, df_patienten):
     if pflegeart not in ["stationär", "ambulant"]:
         return []
@@ -130,6 +142,7 @@ if count > 0 or "df_patienten" not in st.session_state or "df_werte" not in st.s
 
 def show_popup():
     if st.session_state.get("popup_visible", True):
+        patient_info = f"<p><b>Patient:</b> {st.session_state.get('alarm_patient_id', '??')} – {st.session_state.get('alarm_patient_name', '??')}</p>"
         # Popup HTML (ohne Button)
         popup_html = f"""
         <div id="popup" style="
@@ -146,6 +159,7 @@ def show_popup():
             text-align: center;
         ">
             <h3>Warnung: Auffällige Werte</h3>
+            {patient_info}
             <ul style="text-align: left;">
                 {''.join(f'<li>{w}</li>' for w in st.session_state.warnungen)}
             </ul>
@@ -161,13 +175,14 @@ def show_popup():
         st.markdown(popup_html, unsafe_allow_html=True)
 
         # Container-Layout mit CSS-Trick: Streamlit-Button exakt positionieren
+        # top: calc(66%);
         with st.container():
             st.markdown(
                 """
                 <style>
                 div.stButton > button {
-                    position: fixed;
-                    top: calc(66%);
+                    position: fixed; 
+                    top: calc(80%);
                     left: 50%;
                     transform: translate(-50%, 0);
                     z-index: 10000;
@@ -195,7 +210,7 @@ def show_popup():
                 st.rerun()
 
 def play_alarm_sound():
-    audio_file_path = "Alarm.mp3"
+    audio_file_path = "Alarm.m4a"
     with open(audio_file_path, "rb") as f:
         audio_bytes = f.read()
     b64_audio = base64.b64encode(audio_bytes).decode()
@@ -222,7 +237,7 @@ else:
 
 with col_postfach:
     if st.button("Postfach", use_container_width=True):
-        st.warning("Du hast auf dein Postfach gedrückt!")
+        st.switch_page("Welcome.py")
 with col_abmelden:
     if st.button("Abmelden", use_container_width=True):
         st.warning("Du wurdest abgemeldet.")
@@ -326,9 +341,9 @@ elif st.session_state.ausgewählter_patient is not None and st.session_state.mod
 
 
 #########################################################################
-########################################################################
+#########################################################################
 elif st.session_state.modus == "hinzufügen":
-    #########################################################################
+    #####################################################################
     # Neu
     # Freie Plätze in den Heimen anzeigen
     st.subheader("Freie Plätze in den Heimen")
@@ -351,7 +366,7 @@ elif st.session_state.modus == "hinzufügen":
         })
 
     st.dataframe(pd.DataFrame(heime_status), use_container_width=True)
-    ########################################################################
+    #####################################################################
     # Neuen Patienten hinzufügen
     # --- Vorab: CSV-Dateien vorbereiten ---
     df_patienten = st.session_state.df_patienten
@@ -512,3 +527,93 @@ elif st.session_state.modus == "hinzufügen":
             st.success("Patient wurde erfolgreich hinzugefügt!")
             st.session_state.modus = "liste"
             st.rerun()
+
+# Messwerte anzeigen, falls ein Patient ausgewählt
+if st.session_state.ausgewählter_patient:
+    patientenwerte = st.session_state.df_werte[
+        st.session_state.df_werte["Patienten-ID"] == st.session_state.ausgewählter_patient]
+    st.markdown("### Messwerte")
+    if not patientenwerte.empty:
+        st.dataframe(patientenwerte.sort_values(by="Zeitpunkt", ascending=False), use_container_width=True)
+    else:
+        st.info("Noch keine Messwerte vorhanden.")
+
+    st.markdown("### Neuen Messwert hinzufügen")
+    with st.form("werte_formular"):
+        datum = st.date_input("Datum", value=datetime.date.today())
+        uhrzeit = st.time_input("Uhrzeit", value=datetime.datetime.now().time())
+        zeitpunkt = datetime.datetime.combine(datum, uhrzeit)
+
+        hgb = st.number_input("Hämoglobin (g/dL)", min_value=0.0, step=0.1)
+        sys = st.number_input("Blutdruck Systolisch", min_value=0)
+        dia = st.number_input("Blutdruck Diastolisch", min_value=0)
+        puls = st.number_input("Puls", min_value=0)
+        atmung = st.number_input("Atmung", min_value=0)
+        temperatur = st.number_input("Temperatur (°C)", min_value=25.0, max_value=45.0, step=0.1)
+        bz = st.number_input("Blutzucker", min_value=0)
+        sturz = st.selectbox("Sturzsensor", [0, 1])
+        alarm = st.selectbox("Alarm", [0, 1])
+        tod = st.selectbox("Tod", [0, 1])
+        submit = st.form_submit_button("Speichern")
+
+    if submit:
+        st.session_state.warnungen.clear()
+
+        pruefe("Hämoglobin", hgb, 12, 18)
+        pruefe("Systolischer Blutdruck", sys, 90, 140)
+        pruefe("Diastolischer Blutdruck", dia, 60, 90)
+        pruefe("Puls", puls, 50, 100)
+        pruefe("Atmung", atmung, 12, 20)
+        pruefe("Temperatur", temperatur, 36.0, 37.5)
+        pruefe("Blutzucker", bz, 70, 140)
+
+        if st.session_state.warnungen:
+
+            neuer_wert = {
+                "Patienten-ID": st.session_state.ausgewählter_patient,
+                "Zeitpunkt": zeitpunkt,
+                "Blutwerte (Hämoglobin)": hgb,
+                "Blutdruck Sys": sys,
+                "Blutdruck Dia": dia,
+                "Puls": puls,
+                "Atmung": atmung,
+                "Temperatur": temperatur,
+                "Blutzucker": bz,
+                "Sturzsensor": sturz,
+                "Alarm": "1",
+                "Tod": tod
+            }
+            st.session_state.df_werte = pd.concat([st.session_state.df_werte, pd.DataFrame([neuer_wert])],
+                                                  ignore_index=True)
+            st.session_state.df_werte.to_csv("Faker/Werte.csv", index=False)
+            reload_data()
+        else:
+            neuer_wert = {
+                "Patienten-ID": st.session_state.ausgewählter_patient,
+                "Zeitpunkt": zeitpunkt,
+                "Blutwerte (Hämoglobin)": hgb,
+                "Blutdruck Sys": sys,
+                "Blutdruck Dia": dia,
+                "Puls": puls,
+                "Atmung": atmung,
+                "Temperatur": temperatur,
+                "Blutzucker": bz,
+                "Sturzsensor": sturz,
+                "Alarm": alarm,
+                "Tod": tod
+            }
+            st.session_state.df_werte = pd.concat([st.session_state.df_werte, pd.DataFrame([neuer_wert])],
+                                                  ignore_index=True)
+            st.session_state.df_werte.to_csv("Faker/Werte.csv", index=False)
+            reload_data()
+            st.success("Messwert gespeichert!")
+            st.rerun()
+
+if letzter_alarm_aktiv():
+    if darf_popup_anzeigen():
+        st.session_state.popup_visible = True
+        play_alarm_sound()
+        show_popup()
+    else:
+        st.session_state.popup_visible = False
+st.write(st.session_state.warnungen)

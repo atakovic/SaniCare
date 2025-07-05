@@ -16,6 +16,10 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 if "Name" not in st.session_state:
     st.session_state.Name = None
+if "pg" not in st.session_state:
+    st.session_state.pg = None
+
+
 
 def extrahiere_namen(email):
     try:
@@ -44,19 +48,21 @@ def login_page():
             st.error("Ungültige Anmeldedaten!")
 
 def sidebar_anzeigen():
+    if not st.session_state.get("logged_in", False):
+        return  # Navigation nicht anzeigen, wenn abgemeldet
     # --- Wenn eingeloggt, restliche App zeigen ---
-    pg = st.navigation([st.Page("Welcome.py"), st.Page("Heime.py"), st.Page("News.py"),
+    st.session_state.pg = st.navigation([st.Page("Welcome.py"), st.Page("Heime.py"), st.Page("News.py"),
                         st.Page("Mitarbeiter.py"), st.Page("Patienten.py"), st.Page("Events.py"),
                         ],
                        position="sidebar",
-                       expanded=True,
+                       expanded=False,
     )
-    pg.run()
+    st.session_state.pg.run()
 
 
 # --- Ausführung ---
 def main():
-    if st.session_state.logged_in:
+    if st.session_state.get("logged_in", False):
         sidebar_anzeigen()
     else:
         login_page()
@@ -64,4 +70,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-    st.write(st.session_state)
+    #st.write(st.session_state)
+    #felicitas.dowerg@beispiel.com
+    #poEf8lTI
+    #st.write(st.session_state.pg)
